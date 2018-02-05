@@ -1,0 +1,16 @@
+{
+  "name": "ekanzler/adventure-game",
+  "authors": [
+    {
+      "name": "Elizabeth Kanzler",
+      "email": "ekanzler@mail.greenriver.edu"
+    },
+    {
+      "name": "Jarod Bose",
+      "email": "jbose@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
