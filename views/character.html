@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Character</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <form action="submit-character" method="post">
+            <div class="row">
+                <fieldset>
+                    <legend>Character Name</legend>
+                    <label>First Name*: <input type="text" name="fname" value="{{@SESSION.fname}}"></label>
+                    <br>
+                    <label>Last Name: <input type="text" name="lname" value="{{@SESSION.lname}}"></label>
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset>
+                    <legend>Character Gender*</legend>
+                    <select name="gender">
+                        <option>--Select--</option>
+                        <option value="male" <check if="{{@SESSION.gender == 'male'}}">selected</check>>
+                        Male (he/him/his)
+                        </option>
+                        <option value="female" <check if="{{@SESSION.gender == 'female'}}">selected</check>>
+                        Female (she/her/hers)
+                        </option>
+                        <option value="other" <check if="{{@SESSION.gender == 'other'}}">selected</check>>
+                        Other (they/them/theirs)
+                        </option>
+                    </select>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <p>Fields marked with a * are required.</p>
+    </div>
+</div>
+</body>
+</html>
