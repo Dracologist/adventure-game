@@ -12,7 +12,8 @@ class Player
     private $_deaths;
     private $_fname;
     private $_lname;
-    function __construct($fname, $lname)
+
+    public function __construct($fname, $lname)
     {
         $this->_fname = $fname;
         $this->_lname = $lname;
@@ -77,7 +78,7 @@ class Player
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $fname
      */
     public function setFname($fname)
     {
@@ -93,7 +94,7 @@ class Player
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $lname
      */
     public function setLname($lname)
     {

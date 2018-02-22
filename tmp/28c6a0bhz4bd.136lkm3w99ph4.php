@@ -5,8 +5,8 @@
     <title>Starting</title>
 </head>
 <body>
-<p>First Name: {{@SESSION.player->getFname()}}</p>
-<p>Last Name: {{@SESSION.player->getLname()}}</p>
+<p>First Name: <?= ($SESSION['player']->getFname()) ?></p>
+<p>Last Name: <?= ($SESSION['player']->getLname()) ?></p>
 <a href="edit" class="btn-primary btn-lg">Edit My Character</a>
 </body>
 </html>
