@@ -10,10 +10,12 @@ class Player
 {
     private $_score;
     private $_deaths;
-    private $_name;
-    function __construct($name)
+    private $_fname;
+    private $_lname;
+    function __construct($fname, $lname)
     {
-        $this->_name = $name;
+        $this->_fname = $fname;
+        $this->_lname = $lname;
         $this->_deaths = 0;
         $this->_score = 0;
     }
@@ -69,17 +71,33 @@ class Player
     /**
      * @return mixed
      */
-    public function getName()
+    public function getFname()
     {
-        return $this->_name;
+        return $this->_fname;
     }
 
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setFname($fname)
     {
-        $this->_name = $name;
+        $this->_fname = $fname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLname()
+    {
+        return $this->_lname;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setLname($lname)
+    {
+        $this->_lname = $lname;
     }
 
 }
