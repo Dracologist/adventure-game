@@ -17,21 +17,7 @@
                 </fieldset>
             </div>
             <div class="row">
-                <fieldset>
-                    <legend>Character Gender*</legend>
-                    <select name="gender">
-                        <option>--Select--</option>
-                        <option value="male" <check if="{{@SESSION.gender == 'male'}}">selected</check>>
-                        Male (he/him/his)
-                        </option>
-                        <option value="female" <check if="{{@SESSION.gender == 'female'}}">selected</check>>
-                        Female (she/her/hers)
-                        </option>
-                        <option value="other" <check if="{{@SESSION.gender == 'other'}}">selected</check>>
-                        Other (they/them/theirs)
-                        </option>
-                    </select>
-                </fieldset>
+                <input type="submit" name="submit-char" value="Submit" class="btn-primary">
             </div>
         </form>
     </div>

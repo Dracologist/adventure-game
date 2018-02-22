@@ -11,11 +11,9 @@ class Player
     private $_score;
     private $_deaths;
     private $_name;
-    private $_gender;
-    function __construct($name, $gender)
+    function __construct($name)
     {
         $this->_name = $name;
-        $this->_gender = $gender;
         $this->_deaths = 0;
         $this->_score = 0;
     }
@@ -82,22 +80,6 @@ class Player
     public function setName($name)
     {
         $this->_name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGender()
-    {
-        return $this->_gender;
-    }
-
-    /**
-     * @param mixed $gender
-     */
-    public function setGender($gender)
-    {
-        $this->_gender = $gender;
     }
 
 }
