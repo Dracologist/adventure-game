@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <form action="submit" method="post">
+        <form action="submit-character" method="post">
             <div class="row">
                 <fieldset>
                     <legend>Character Name</legend>

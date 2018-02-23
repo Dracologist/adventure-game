@@ -19,7 +19,7 @@ $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 new Session();
 
-$f3->route('GET|POST /character/create', function($f3) {
+$f3->route('GET|POST /create-character', function($f3) {
     $template = new Template;
     echo $template->render('views/character.html');
 });
@@ -29,23 +29,23 @@ $f3->route('GET|POST /reset', function($f3) {
     echo "All Cleared!";
 });
 
-$f3->route('GET|POST /character/edit', function($f3) {
+$f3->route('GET|POST /edit-character', function($f3) {
     $template = new Template;
     echo $template->render('views/character.html');
 });
 $f3->route('GET|POST /', function($f3) {
     $view = new View;
-    $f3->set('SESSION.nextPage', 'views/entrance.html');
+    $f3->set('SESSION.nextPage', 'views/view-character.html');
     echo $view->render('views/home.html');
 });
-$f3->route('GET|POST /character/submit', function($f3) {
+$f3->route('POST /submit-character', function($f3) {
     $template = new Template;
     if(!$f3->exists('SESSION.nextPage')){
-        $f3->set('SESSION.nextPage','views/timeout.html');
+        $page = 'views/timeout.html';
     }
-    elseif(isset($_POST['submit'])) {
+    else {
         if (!validName($_POST['fname']) || !validName($_POST['lname'])) {
-            $f3->set('SESSION.nextPage','views/character.html');
+            $page = 'views/character.html';
         } else {
             if (!$f3->exists('SESSION.player')) {
                 $player = new Player($_POST['fname'], $_POST['lname']);
@@ -56,9 +56,15 @@ $f3->route('GET|POST /character/submit', function($f3) {
                 $player->setLname($_POST['lname']);
             }
             $f3->set('SESSION.player', $player);
+            $page = $f3->get('SESSION.nextPage');
         }
     }
-    echo $template->render($f3->get('SESSION.nextPage'));
+    echo $template->render($page);
+});
+$f3->route('GET|POST /@location', function($f3) {
+    $view = new View;
+    $f3->set('SESSION.nextPage', 'views/'.$f3->get('PARAMS.location').'.html');
+    echo $view->render('views/home.html');
 });
 
 $f3->run();
