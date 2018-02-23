@@ -19,23 +19,15 @@ $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 new Session();
 
-$f3->route('GET|POST /create-character', function($f3) {
-    $template = new Template;
-    echo $template->render('views/character.html');
-});
 
 $f3->route('GET|POST /reset', function($f3) {
     session_destroy();
     echo "All Cleared!";
 });
 
-$f3->route('GET|POST /edit-character', function($f3) {
-    $template = new Template;
-    echo $template->render('views/character.html');
-});
 $f3->route('GET|POST /', function($f3) {
     $view = new View;
-    $f3->set('SESSION.nextPage', 'views/view-character.html');
+    $f3->set('SESSION.nextPage', 'views/view-character-form.html');
     echo $view->render('views/home.html');
 });
 $f3->route('POST /submit-character', function($f3) {
@@ -45,7 +37,7 @@ $f3->route('POST /submit-character', function($f3) {
     }
     else {
         if (!validName($_POST['fname']) || !validName($_POST['lname'])) {
-            $page = 'views/character.html';
+            $page = 'views/character-form.html';
         } else {
             if (!$f3->exists('SESSION.player')) {
                 $player = new Player($_POST['fname'], $_POST['lname']);
