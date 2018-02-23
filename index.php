@@ -27,7 +27,7 @@ $f3->route('GET|POST /reset', function($f3) {
 
 $f3->route('GET|POST /', function($f3) {
     $view = new View;
-    $f3->set('SESSION.nextPage', 'views/view-character-form.html');
+    $f3->set('SESSION.nextPage', 'views/view-character.html');
     echo $view->render('views/home.html');
 });
 $f3->route('POST /submit-character', function($f3) {
