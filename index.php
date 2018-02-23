@@ -53,9 +53,12 @@ $f3->route('POST /submit-character', function($f3) {
     }
     echo $template->render($page);
 });
+
 $f3->route('GET|POST /@location', function($f3) {
     $template = new Template;
-    $f3->set('SESSION.nextPage', 'views/'.$f3->get('PARAMS.location').'.html');
+    if($f3->get('PARAMS.location') != "character-form") {
+        $f3->set('SESSION.nextPage', 'views/' . $f3->get('PARAMS.location') . '.html');
+    }
     echo $template->render($f3->get('SESSION.nextPage'));
 });
 
