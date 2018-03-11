@@ -19,7 +19,7 @@ $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 new Session();
 
-
+$f3->set('SESSION.notes', array("title"=>"text"));
 $f3->route('GET|POST /reset', function($f3) {
     session_destroy();
     echo "All Cleared!";
@@ -27,12 +27,12 @@ $f3->route('GET|POST /reset', function($f3) {
 
 $f3->route('GET|POST /', function($f3) {
     $view = new View;
-    $f3->set('SESSION.nextPage', 'views/view-character.html');
+    $f3->set('SESSION.location', 'entryway');
     echo $view->render('views/home.html');
 });
 $f3->route('POST /submit-character', function($f3) {
     $template = new Template;
-    if(!$f3->exists('SESSION.nextPage')){
+    if(!$f3->exists('SESSION.location')){
         $page = 'views/timeout.html';
     }
     else {
@@ -48,7 +48,7 @@ $f3->route('POST /submit-character', function($f3) {
                 $player->setLname($_POST['lname']);
             }
             $f3->set('SESSION.player', $player);
-            $page = $f3->get('SESSION.nextPage');
+            $page = 'views/view-character.html';
         }
     }
     echo $template->render($page);
@@ -58,7 +58,7 @@ $f3->route('GET|POST /@location', function($f3) {
     $template = new Template;
     $page = 'views/' . $f3->get('PARAMS.location') . '.html';
     if($page != "views/character-form.html") {
-        $f3->set('SESSION.nextPage', $page);
+        $f3->set('SESSION.location', $f3->get('PARAMS.location'));
     }
     echo $template->render($page);
 });
