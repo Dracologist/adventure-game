@@ -12,7 +12,7 @@
         railing to keep you from falling over the side. Your stomach reels as you
         step out onto the bridge, carefully placing one foot in front of the other until...
     </p>
-    <check if="{{strlen('weightywordbridge') < (strlen(@SESSION.player->getFname()) + strlen(@SESSION.player->getLname()))}}">
+    <check if="{{strlen('weightyword') < (strlen(@SESSION.player->getFname()) + strlen(@SESSION.player->getLname()))}}">
         <false>
             {{@SESSION.player->playerDeath()}}
             <p><b><i>WOOSH!</i></b> The wind knocks you sideways. You stumble out over
