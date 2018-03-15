@@ -16,7 +16,7 @@ session_save_path("/tmp/cache");
     <nav class="navbar navbar-nav">
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="entryway">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="edit-character">Edit Character</a></li>
+            <li class="nav-item"><a class="nav-link" href="character-form">Edit Character</a></li>
             <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
         </ul>
     </nav>
