@@ -5,6 +5,23 @@
     <title>Mountain Path</title>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-nav sticky-top">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="entryway">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="character-form">Edit Character</a></li>
+            <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
+            <?php if (isset($SESSION['player'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link">Score: <?= ($SESSION['player']->getScore()) ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Name: <?= ($SESSION['player']->getFName()) ?> <?= ($SESSION['player']->getLName()) ?></a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+</div>
 <p>
     After several minutes of hiking over the rocky terrain of the mountain path,
     you can see a fork in the road up ahead. A signpost indicates that the left
