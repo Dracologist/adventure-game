@@ -12,6 +12,14 @@ session_save_path("/tmp/cache");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </head>
+<body><div class="container">
+    <nav class="navbar navbar-nav">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="entryway">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="edit-character">Edit Character</a></li>
+            <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
+        </ul>
+    </nav>
 <?php
 $f3 = Base::instance();
 
@@ -19,8 +27,16 @@ $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 new Session();
 
-$f3->set('SESSION.notes', array("title"=>"text"));
-$f3->route('GET|POST /reset', function($f3) {
+$f3->route('GET|POST /quit', function($f3) {
+    //PDO stuff
+    require '/home/ekanzler/connect.php';
+    try {
+        $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        echo $e->getMessage();
+    }
+    //TODO create table
     session_destroy();
     echo "All Cleared!";
 });
@@ -64,3 +80,5 @@ $f3->route('GET|POST /@location', function($f3) {
 });
 
 $f3->run();
+?>
+</div></body>
