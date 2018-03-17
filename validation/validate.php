@@ -6,5 +6,11 @@
  */
 
 function validName($name){
-    return strlen($name) > 0;
+    if(strlen($name) <= 0){
+        return "Names must be at least one character long!";
+    }
+    elseif(preg_match("/[\W/")){
+        return "Names can not contain special characters!";
+    }
+    else return "Name is valid";
 }

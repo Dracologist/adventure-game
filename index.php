@@ -45,7 +45,15 @@ $f3->route('POST /submit-character', function($f3) {
         $page = 'views/timeout.html';
     }
     else {
-        if (!validName($_POST['fname']) || !validName($_POST['lname'])) {
+        $feedback['fname'] = validName($_POST['fname']);
+        $feedback['lname'] = validName($_POST['lname']);
+        if ($feedback['fname'] != "Name is valid" || !validName($_POST['lname'])) {
+            if ($feedback['fname'] != "Name is valid"){
+                $f3->set('fnerror', $feedback['fname']);
+            }
+            if ($feedback['lname'] != "Name is valid"){
+                $f3->set('lnerror', $feedback['lname']);
+            }
             $page = 'views/character-form.html';
         } else {
             if (!$f3->exists('SESSION.player')) {
@@ -70,6 +78,11 @@ $f3->route('GET|POST /@location', function($f3) {
         $f3->set('SESSION.location', $f3->get('PARAMS.location'));
     }
     echo $template->render($page);
+});
+
+$f3->route('GET /continue', function ($f3){
+    $template = new Template;
+
 });
 
 $f3->run();

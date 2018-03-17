@@ -11,8 +11,14 @@
             <div class="row">
                 <fieldset>
                     <legend>Character Name</legend>
+                    <check if="{{isset(@fnerror)}}">
+                        <p class="alert alert-danger">{{@fnerror}}</p>
+                    </check>
                     <label>First Name: <input type="text" name="fname" id="fname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getFname()}}"</check>></label>
                     <br>
+                    <check if="{{isset(@lnerror)}}">
+                        <p class="alert alert-danger">{{@lnerror}}</p>
+                    </check>
                     <label>Last Name: <input type="text" name="lname" id="lname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getLname()}}"</check>></label>
                 </fieldset>
             </div>
