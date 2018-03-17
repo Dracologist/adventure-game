@@ -13,9 +13,6 @@
             <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
             <check if="{{isset(@SESSION.player)}}">
                 <li class="nav-item">
-                    <a class="nav-link">Score: {{@SESSION.player->getScore()}}</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link">Name: {{@SESSION.player->getFName()}} {{@SESSION.player->getLName()}}</a>
                 </li>
             </check>
@@ -40,9 +37,6 @@
         <p>Your foot finds solid ground and you return to the safety of the turf.</p>
     </true>
 </check>
-    Score: {{@SESSION.player->getScore()}}
-    <br>
-    Deaths: {{@SESSION.player->getDeaths}}
 </div>
 </body>
 </html>
