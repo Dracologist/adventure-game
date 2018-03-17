@@ -91,15 +91,13 @@ $f3->route('GET|POST /continue', function ($f3){
     $load = loadPlayer($id);
     if(is_array($load)) {
         $player = new Player($load['fname'], $load['lname']);
-        $player->setDeaths($load['deaths']);
-        $player->setScore($load['score']);
         $f3->set('SESSION.player', $player);
         $f3->set('SESSION.location', $load['location']);
         $f3->set('SESSION.playerid', $id);
         $page = "views/view-character.html";
     } else {
         if($load != false) {
-            $f3->set("iderror", "Invalid ID!<br>" . $load->getMessage());
+            $f3->set("iderror", "Database Error " . $load->getMessage());
         }
         else{
             $f3->set("iderror", "Invalid ID!");

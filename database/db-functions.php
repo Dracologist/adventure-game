@@ -52,11 +52,9 @@ function updatePlayer($player, $location, $id){
     $dbh = connect();
     $fname = $player->getFname();
     $lname = $player->getLname();
-    $score = $player->getScore();
-    $deaths = $player->getDeaths();
 
     $query = "UPDATE player 
-              SET fname = :fname, lname = :lname, score = :score, deaths = :deaths, location = :location 
+              SET fname = :fname, lname = :lname, location = :location 
               WHERE id = :id";
     $statement = $dbh->prepare($query);
     $statement->bindParam(":fname", $fname,
@@ -65,8 +63,6 @@ function updatePlayer($player, $location, $id){
         PDO::PARAM_STR);
     $statement->bindParam(":location", $location,
         PDO::PARAM_STR);
-    $statement->bindParam(":score", $score, PDO::PARAM_INT);
-    $statement->bindParam(":deaths", $deaths, PDO::PARAM_INT);
     $statement->bindParam(":id", $id, PDO::PARAM_INT);
     $statement->execute();
 }

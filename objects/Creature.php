@@ -9,18 +9,17 @@
 class Creature
 {
     /**
-     * @param Player $player
+     * @return string attack message
      */
-    public function attack($player){
-        $player->deductPoints();
-        echo "The creature attacks you!";
+    public function attack(){
+        return "<p>The creature attacks you!</p>";
     }
     /**
      * @param Player $player
+     * @return string kill message
      */
-    public function kill($player){
-        $player->playerDeath();
-        echo "The creature kills you!";
+    public function kill(){
+        return "<p>The creature kills you!</p>".$player->playerDeath();
     }
     /**
      * @param Player $player

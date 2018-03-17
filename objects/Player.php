@@ -8,8 +8,6 @@
 
 class Player
 {
-    protected $_score = 10;
-    protected $_deaths = 0;
     private $_fname;
     private $_lname;
 
@@ -21,54 +19,7 @@ class Player
 
     public function playerDeath()
     {
-        return "<h1>You died!</h1>".$this->setDeaths($this->getDeaths() + 1).$this->deductPoints();
-    }
-
-    public function deductPoints()
-    {
-        $newScore = $this->getScore() - 5;
-        if($newScore < 0){
-            $newScore = 0;
-        }
-        return "<p>You lost 5 points!</p>".$this->setScore($newScore);
-    }
-
-    public function awardPoints()
-    {
-        return "<p>You received 10 points!"."</p>".$this->setScore($this->getScore() + 10);
-    }
-
-    public function getDeaths()
-    {
-        return $this->_deaths;
-    }
-
-    /**
-     * @param int $deaths
-     * @return string message
-     */
-    public function setDeaths($deaths)
-    {
-        $this->_deaths = $deaths;
-        return "<p>You have died ".$this->getDeaths()." times so far.</p>";
-    }
-
-    /**
-     * @return int
-     */
-    public function getScore()
-    {
-        return $this->_score;
-    }
-
-    /**
-     * @param int $score
-     * @return string message
-     */
-    public function setScore($score)
-    {
-        $this->_score = $score;
-        return "<p>Your current score is ".$this->getScore()."</p>";
+        return "<h1>You died!</h1>";
     }
 
     /**
