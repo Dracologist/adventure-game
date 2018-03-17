@@ -1,5 +1,6 @@
 <?php
 require_once('vendor/autoload.php');
+require ('database/db-functions.php');
 
 session_start();
 session_save_path("/tmp/cache");
@@ -15,21 +16,12 @@ session_save_path("/tmp/cache");
 
 <?php
 $f3 = Base::instance();
-$f3->set('award', 10);
 $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 new Session();
 
 $f3->route('GET|POST /quit', function($f3) {
-    //PDO stuff
-    require '/home/ekanzler/connect.php';
-    try {
-        $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
-        echo $e->getMessage();
-    }
-    //TODO create table
+
     session_destroy();
     echo "All Cleared!";
 });
@@ -58,11 +50,12 @@ $f3->route('POST /submit-character', function($f3) {
         } else {
             if (!$f3->exists('SESSION.player')) {
                 $player = new Player($_POST['fname'], $_POST['lname']);
-                $player->awardPoints(10);
             } else {
                 $player = $f3->get('SESSION.player');
                 $player->setFname($_POST['fname']);
                 $player->setLname($_POST['lname']);
+                $f3->set('SESSION.playerid', addPlayer($f3->get('SESSION.player'),
+                    $f3->get('SESSION.location')));
             }
             $f3->set('SESSION.player', $player);
             $page = 'views/view-character.html';
@@ -80,9 +73,24 @@ $f3->route('GET|POST /@location', function($f3) {
     echo $template->render($page);
 });
 
-$f3->route('GET /continue', function ($f3){
+$f3->route('GET /continue', function (){
     $template = new Template;
+    $template->render("views/load-character.html");
+});
 
+$f3->route('POST /continue', function ($f3){
+    $template = new Template;
+    $id = $_POST['player-id'];
+    $load = loadPlayer($id);
+    if($load != false) {
+        $f3->set('SESSION.player', $load);
+        $f3->set('SESSION.playerid', $id);
+        $page = "views/view-character.html";
+    } else {
+        $f3->set("iderror", "Invalid ID!");
+        $page = "views/load-character.html";
+    }
+    $template->render($page);
 });
 
 $f3->run();

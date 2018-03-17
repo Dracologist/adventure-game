@@ -24,27 +24,30 @@ class Player
     public function playerDeath()
     {
         $this->setDeaths($this->getDeaths() + 1);
-        $this->deductPoints();
+        $this->deductPoints(5);
     }
 
     /**
-     * @param int $loss
+     * @param int $points
      */
-    public function deductPoints()
+    public function deductPoints($points)
     {
-        $newScore = $this->_score - 5;
-        $this->setScore($newScore);
-    }
-
-    public function awardPoints()
-    {
-        $newScore = $this->_score + 10;
+        $newScore = $this->getScore() - $points;
+        if($newScore < 0){
+            $newScore = 0;
+        }
         $this->setScore($newScore);
     }
 
     /**
-     * @return int
+     * @param int $points
      */
+    public function awardPoints($points)
+    {
+        $newScore = $this->getScore() + $points;
+        $this->setScore($newScore);
+    }
+
     public function getDeaths()
     {
         return $this->_deaths;
