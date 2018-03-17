@@ -24,18 +24,22 @@
     squeak and the ropes creak. Softly, slowly, you take another step, and then another until...
 </p>
 <check if="{{strlen('weightyword') > (strlen(@SESSION.player->getFname()) + strlen(@SESSION.player->getLname()))}}">
+    <true>
+        <p>
+            Your foot finds solid ground and you return to the safety of the turf. You descend down the mountain
+            and find another fork in the road. One path leads to a thick forest and the other to lush grasslands.
+        </p>
+        {{@SESSION.player->awardPoints()}}
+        <a href="forest" class="btn btn-primary">To the forest</a>
+        <a href="grassland" class="btn btn-primary">To the grasslands</a>
+    </true>
     <false>
-        {{@SESSION.player->playerDeath()}}
         <p><b><i>SNAP!</i></b> The board beneath your foot breaks in half and you fall
         forward across the bridge. <b><i>TWANG!</i></b> The sudden impact of your fall was more
         than the ropes could handle. You plummet into the darkness of the abyss below.</p>
-        <h1>You died!</h1>
+        {{@SESSION.player->playerDeath()}}
         <a class="btn btn-primary" href="signpost">Return to the Signpost</a>
     </false>
-    <true>
-        {{@SESSION.player->awardPoints()}}
-        <p>Your foot finds solid ground and you return to the safety of the turf.</p>
-    </true>
 </check>
 </div>
 </body>

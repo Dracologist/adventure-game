@@ -19,11 +19,17 @@ $f3 = Base::instance();
 $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 new Session();
-
 $f3->route('GET|POST /quit', function($f3) {
-
+    if($f3->exists('SESSION.player')) {
+        echo "<h1>Your game id is " . $f3->get('SESSION.playerid') . "</h1>";
+        echo "<br>";
+        echo "<p>Save this number if you want to be able to continue playing later.</p>";
+        updatePlayer($f3->get('SESSION.player'), $f3->get('SESSION.location'),
+            $f3->get('SESSION.playerid'));
+    } else {
+        echo "<p>Leaving so soon?</p>";
+    }
     session_destroy();
-    echo "All Cleared!";
 });
 
 $f3->route('GET|POST /', function($f3) {
@@ -31,7 +37,7 @@ $f3->route('GET|POST /', function($f3) {
     $f3->set('SESSION.location', 'entryway');
     echo $view->render('views/home.html');
 });
-$f3->route('POST /submit-character', function($f3) {
+$f3->route('GET|POST /submit-character', function($f3) {
     $template = new Template;
     if(!$f3->exists('SESSION.location')){
         $page = 'views/timeout.html';
@@ -46,51 +52,61 @@ $f3->route('POST /submit-character', function($f3) {
             if ($feedback['lname'] != "Name is valid"){
                 $f3->set('lnerror', $feedback['lname']);
             }
-            $page = 'views/character-form.html';
         } else {
-            if (!$f3->exists('SESSION.player')) {
+            $player = $f3->get('SESSION.player');
+            if ($player == null) {
                 $player = new Player($_POST['fname'], $_POST['lname']);
+                $f3->set('SESSION.playerid', addPlayer($player,
+                    $f3->get('SESSION.location')));
             } else {
-                $player = $f3->get('SESSION.player');
                 $player->setFname($_POST['fname']);
                 $player->setLname($_POST['lname']);
-                $f3->set('SESSION.playerid', addPlayer($f3->get('SESSION.player'),
-                    $f3->get('SESSION.location')));
+                updatePlayer($f3->get('SESSION.player'), $f3->get('SESSION.location'),
+                    $f3->get('SESSION.playerid'));
             }
-            $f3->set('SESSION.player', $player);
-            $page = 'views/view-character.html';
         }
+        $f3->set('SESSION.player', $player);
+        $page = 'views/view-character.html';
     }
     echo $template->render($page);
 });
 
-$f3->route('GET|POST /@location', function($f3) {
+$f3->route('GET /@location', function($f3) {
     $template = new Template;
-    $page = 'views/' . $f3->get('PARAMS.location') . '.html';
-    if($page != "views/character-form.html") {
+    $location = $f3->get('PARAMS.location');
+    $page = 'views/' . $location . '.html';
+    if($location != "character-form" && $location != "load-character") {
         $f3->set('SESSION.location', $f3->get('PARAMS.location'));
     }
+    if($f3->get('SESSION.player') != null) {
+        updatePlayer($f3->get('SESSION.player'), $f3->get('SESSION.location'),
+            $f3->get('SESSION.playerid'));
+    }
     echo $template->render($page);
 });
 
-$f3->route('GET /continue', function (){
-    $template = new Template;
-    $template->render("views/load-character.html");
-});
-
-$f3->route('POST /continue', function ($f3){
+$f3->route('GET|POST /continue', function ($f3){
     $template = new Template;
     $id = $_POST['player-id'];
     $load = loadPlayer($id);
-    if($load != false) {
-        $f3->set('SESSION.player', $load);
+    if(is_array($load)) {
+        $player = new Player($load['fname'], $load['lname']);
+        $player->setDeaths($load['deaths']);
+        $player->setScore($load['score']);
+        $f3->set('SESSION.player', $player);
+        $f3->set('SESSION.location', $load['location']);
         $f3->set('SESSION.playerid', $id);
         $page = "views/view-character.html";
     } else {
-        $f3->set("iderror", "Invalid ID!");
+        if($load != false) {
+            $f3->set("iderror", "Invalid ID!<br>" . $load->getMessage());
+        }
+        else{
+            $f3->set("iderror", "Invalid ID!");
+        }
         $page = "views/load-character.html";
     }
-    $template->render($page);
+    echo $template->render($page);
 });
 
 $f3->run();

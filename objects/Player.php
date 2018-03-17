@@ -8,8 +8,8 @@
 
 class Player
 {
-    private $_score;
-    private $_deaths;
+    protected $_score = 10;
+    protected $_deaths = 0;
     private $_fname;
     private $_lname;
 
@@ -17,35 +17,25 @@ class Player
     {
         $this->_fname = $fname;
         $this->_lname = $lname;
-        $this->_deaths = 0;
-        $this->_score = 0;
     }
 
     public function playerDeath()
     {
-        $this->setDeaths($this->getDeaths() + 1);
-        $this->deductPoints(5);
+        return "<h1>You died!</h1>".$this->setDeaths($this->getDeaths() + 1).$this->deductPoints();
     }
 
-    /**
-     * @param int $points
-     */
-    public function deductPoints($points)
+    public function deductPoints()
     {
-        $newScore = $this->getScore() - $points;
+        $newScore = $this->getScore() - 5;
         if($newScore < 0){
             $newScore = 0;
         }
-        $this->setScore($newScore);
+        return "<p>You lost 5 points!</p>".$this->setScore($newScore);
     }
 
-    /**
-     * @param int $points
-     */
-    public function awardPoints($points)
+    public function awardPoints()
     {
-        $newScore = $this->getScore() + $points;
-        $this->setScore($newScore);
+        return "<p>You received 10 points!"."</p>".$this->setScore($this->getScore() + 10);
     }
 
     public function getDeaths()
@@ -55,10 +45,12 @@ class Player
 
     /**
      * @param int $deaths
+     * @return string message
      */
     public function setDeaths($deaths)
     {
         $this->_deaths = $deaths;
+        return "<p>You have died ".$this->getDeaths()." times so far.</p>";
     }
 
     /**
@@ -71,10 +63,12 @@ class Player
 
     /**
      * @param int $score
+     * @return string message
      */
     public function setScore($score)
     {
         $this->_score = $score;
+        return "<p>Your current score is ".$this->getScore()."</p>";
     }
 
     /**
@@ -103,6 +97,7 @@ class Player
 
     /**
      * @param mixed $lname
+     * @return string message
      */
     public function setLname($lname)
     {

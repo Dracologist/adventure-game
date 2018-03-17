@@ -10,14 +10,14 @@
         <form action="submit-character" method="post" class="container">
             <div class="row">
                 <fieldset class="container">
-                    <div class="col-md">
+                    <div class="row">
                         <legend>Character Name</legend>
                         <check if="{{isset(@fnerror)}}">
                             <p class="alert alert-danger">{{@fnerror}}</p>
                         </check>
                         <label>First Name: <input type="text" name="fname" id="fname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getFname()}}"</check>></label>
                     </div>
-                    <div class="col-md">
+                    <div class="row">
                         <check if="{{isset(@lnerror)}}">
                         <p class="alert alert-danger">{{@lnerror}}</p>
                         </check>

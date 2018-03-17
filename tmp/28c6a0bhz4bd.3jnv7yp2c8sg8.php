@@ -13,9 +13,6 @@
             <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
             <?php if (isset($SESSION['player'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link">Score: <?= ($SESSION['player']->getScore()) ?></a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link">Name: <?= ($SESSION['player']->getFName()) ?> <?= ($SESSION['player']->getLName()) ?></a>
                 </li>
             <?php endif; ?>

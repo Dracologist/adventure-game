@@ -13,9 +13,6 @@
             <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
             <?php if (isset($SESSION['player'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link">Score: <?= ($SESSION['player']->getScore()) ?></a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link">Name: <?= ($SESSION['player']->getFName()) ?> <?= ($SESSION['player']->getLName()) ?></a>
                 </li>
             <?php endif; ?>
@@ -28,25 +25,24 @@
 </p>
 <?php if (strlen('weightyword') > (strlen($SESSION['player']->getFname()) + strlen($SESSION['player']->getLname()))): ?>
     
+        <p>
+            Your foot finds solid ground and you return to the safety of the turf. You descend down the mountain
+            and find another fork in the road. One path leads to a thick forest and the other to lush grasslands.
+        </p>
         <?= ($SESSION['player']->awardPoints())."
 " ?>
-        <p>Your foot finds solid ground and you return to the safety of the turf.</p>
+        <a href="forest" class="btn btn-primary">To the forest</a>
+        <a href="grassland" class="btn btn-primary">To the grasslands</a>
     
     <?php else: ?>
-        <?= ($SESSION['player']->playerDeath())."
-" ?>
         <p><b><i>SNAP!</i></b> The board beneath your foot breaks in half and you fall
         forward across the bridge. <b><i>TWANG!</i></b> The sudden impact of your fall was more
         than the ropes could handle. You plummet into the darkness of the abyss below.</p>
-        <h1>You died!</h1>
+        <?= ($SESSION['player']->playerDeath())."
+" ?>
         <a class="btn btn-primary" href="signpost">Return to the Signpost</a>
     
 <?php endif; ?>
-    Score: <?= ($SESSION['player']->getScore())."
-" ?>
-    <br>
-    Deaths: <?= ($SESSION['player']->getDeaths)."
-" ?>
 </div>
 </body>
 </html>

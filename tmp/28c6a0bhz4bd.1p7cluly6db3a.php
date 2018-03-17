@@ -29,24 +29,23 @@
     </p>
     <?php if (strlen('weightyword') <= (strlen($SESSION['player']->getFname()) + strlen($SESSION['player']->getLname()))): ?>
         
+            <p>
+                Your foot finds solid ground and you return to the safety of the turf. You descend down the mountain
+                and find another fork in the road. One path leads to a thick forest and the other to lush grasslands.
+            </p>
             <?= ($SESSION['player']->awardPoints())."
 " ?>
-            <p>Your foot finds solid ground and you return to the safety of the turf.</p>
+            <a href="forest" class="btn btn-primary">To the forest</a>
+            <a href="grassland" class="btn btn-primary">To the grasslands</a>
         
         <?php else: ?>
-            <?= ($SESSION['player']->playerDeath())."
-" ?>
             <p><b><i>WOOSH!</i></b> The wind knocks you sideways. You stumble out over
             the edge of the rocky bridge and plummet into the chasm below.</p>
-            <h1>You died!</h1>
+            <?= ($SESSION['player']->playerDeath())."
+" ?>
             <a class="btn btn-primary" href="signpost">Return to the Signpost</a>
         
     <?php endif; ?>
-    Score: <?= ($SESSION['player']->getScore())."
-" ?>
-    <br>
-    Deaths: <?= ($SESSION['player']->getDeaths)."
-" ?>
 </div>
 </body>
 </html>
