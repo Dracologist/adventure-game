@@ -57,6 +57,12 @@
             if(!valid){
                 e.preventDefault();
             }
+            if (valid){
+                $.post("submit-character", {
+                    fname: first,
+                    lname: last
+                });
+            }
         });
     });
 </script>

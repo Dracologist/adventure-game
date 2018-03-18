@@ -27,6 +27,11 @@
                 $("#load-message").html("<p class='alert alert-danger'>ID must be at least 1</p>");
                 e.preventDefault();
             }
+            else {
+                $.post("continue", {
+                    player_id: id
+                });
+            }
         });
     });
 </script>
