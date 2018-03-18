@@ -11,6 +11,14 @@
  */
 function connect(){
     require '/home/ekanzler/connect.php';
+    /*
+     * CREATE TABLE player (
+     * id int(255) AUTO_INCREMENT PRIMARY KEY,
+     * fname varchar(255),
+     * lname varchar(255),
+     * location varchar(255) DEFAULT "entryway"
+     * );
+     */
     try {
         $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -82,4 +90,12 @@ function loadPlayer($id){
     } catch (PDOException $e) {
         return $e;
     }
+}
+
+function deletePlayer($id){
+    $dbh = connect();
+    $sql = "DELETE * FROM player WHERE id = :id";
+    $statement = $dbh->prepare($sql);
+    $statement->bindParam(":id", $id, PDO::PARAM_INT);
+    $statement->execute();
 }

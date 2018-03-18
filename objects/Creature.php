@@ -18,15 +18,8 @@ class Creature
      * @param Player $player
      * @return string kill message
      */
-    public function kill(){
+    public function kill($player){
         return "<p>The creature kills you!</p>".$player->playerDeath();
-    }
-    /**
-     * @param Player $player
-     */
-    public function reward($player){
-        $player->awardPoints();
-        echo "You are rewarded for your wisdom.";
     }
     /**
      * @param int probability (1-100)

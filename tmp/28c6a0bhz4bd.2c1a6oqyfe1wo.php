@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Entrance</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="container">
@@ -18,13 +18,10 @@
             <?php endif; ?>
         </ul>
     </nav>
+    <p>You reach the end of the forest path, still checking over your shoulder to see if the bear is following you.
+        Ahead you can see the road forks again. One path leads to a desert and the other to a grassland.</p>
+    <a href="desert" class="btn btn-primary">To the Desert</a>
+    <a href="grassland" class="btn btn-primary">To the Grassland</a>
 </div>
-<p>
-    Before you stretch three pathways. The first one leads west to the mountains.
-    The second leads north to the forest. The third and final path leads east to the grasslands.
-</p>
-<a href="mountains" class="btn-primary btn">To the mountains</a>
-<a href="forest" class="btn btn-primary">To the forest</a>
-<a href="#" class="btn btn-primary">To the grasslands</a>
 </body>
 </html>

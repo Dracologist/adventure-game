@@ -1,6 +1,5 @@
 <?php
 require_once('vendor/autoload.php');
-require ('database/db-functions.php');
 
 session_start();
 session_save_path("/tmp/cache");
@@ -18,6 +17,8 @@ session_save_path("/tmp/cache");
 $f3 = Base::instance();
 $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
+$f3->set('cub', new BearCub);
+$f3->set('mother', new Bear);
 new Session();
 $f3->route('GET|POST /quit', function($f3) {
     if($f3->exists('SESSION.player')) {
@@ -29,6 +30,7 @@ $f3->route('GET|POST /quit', function($f3) {
     } else {
         echo "<p>Leaving so soon?</p>";
     }
+    echo "<a href='/328/adventure-game' class='btn btn-primary btn-lg'>Home</a>";
     session_destroy();
 });
 

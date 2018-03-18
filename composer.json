@@ -15,6 +15,6 @@
   },
   "autoload": {
     "classmap": ["objects/"],
-    "files": ["validation/validate.php"]
+    "files": ["validation/validate.php", "database/db-functions.php"]
   }
 }

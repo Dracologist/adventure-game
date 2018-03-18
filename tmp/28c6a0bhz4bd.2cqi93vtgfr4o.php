@@ -18,16 +18,16 @@
             <?php endif; ?>
         </ul>
     </nav>
-</div>
-<p>
-    after trekking for 10 minutes through the dense forest,
-    you can see a fork in the road up ahead. A signpost indicates that the left
-    path leads to Weightyword Bridge and the right path leads Letterlight Bridge.
-    There are other signs on the post, but they are too small to read at this distance.
-</p>
+    <p>
+        After trekking for 10 minutes through the dense forest,
+        You reach a clearing in the trees surrounded by berry bushes.
+        On the left side of the clearing, you can see a little bear cub feasting on the berries.
+    </p>
 
-<a class="btn btn-primary" href="weightyword">Go to Weightyword Bridge</a>
-<a class="btn btn-primary" href="signpost">Examine Signpost</a>
-<a class="btn btn-primary" href="letterlight">Go to Letterlight Bridge</a>
+    <a class="btn btn-primary" href="bear-cub">Approach the bear cub</a>
+    <a class="btn btn-primary" href="sneak">Sneak past the bear cub</a>
+    <a class="btn btn-primary" href="entryway">Turn back</a>
+</div>
+
 </body>
 </html>

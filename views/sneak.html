@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>grassland path</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="container">
@@ -19,16 +19,18 @@
             </check>
         </ul>
     </nav>
+    <p>You attempt to sneak past the bear cub.</p>
+    <check if="{{@cub->perception(50)}}">
+        <true>
+            <p>A twig snaps under your foot and the little bear's face whips around to look at you.</p>
+            <a href="forest-end" class="btn btn-primary">Run Away</a>
+            <a href="bear-cub" class="btn btn-primary">Approach the Cub</a>
+        </true>
+        <false>
+            <p>The little bear does not notice your presence and you continue along your way.</p>
+            <a href="forest-end" class="btn btn-primary">Continue</a>
+        </false>
+    </check>
 </div>
-<p>
-    While skipping through the soft grassland,
-    you can see a fork in the road up ahead. A signpost indicates that the left
-    path leads to Weightyword Bridge and the right path leads Letterlight Bridge.
-    There are other signs on the post, but they are too small to read at this distance.
-</p>
-
-<a class="btn btn-primary" href="weightyword">Go to Weightyword Bridge</a>
-<a class="btn btn-primary" href="signpost">Examine Signpost</a>
-<a class="btn btn-primary" href="letterlight">Go to Letterlight Bridge</a>
 </body>
 </html>

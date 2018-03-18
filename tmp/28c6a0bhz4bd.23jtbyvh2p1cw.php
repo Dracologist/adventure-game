@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Entrance</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="container">
@@ -18,13 +18,18 @@
             <?php endif; ?>
         </ul>
     </nav>
+    <p>You attempt to sneak past the bear cub.</p>
+    <?php if ($cub->perception(50)): ?>
+        
+            <p>A twig snaps under your foot and the little bear's face whips around to look at you.</p>
+            <a href="forest-end" class="btn btn-primary">Run Away</a>
+            <a href="bear-cub" class="btn btn-primary">Approach the Cub</a>
+        
+        <?php else: ?>
+            <p>The little bear does not notice your presence and you continue along your way.</p>
+            <a href="forest-end" class="btn btn-primary">Continue</a>
+        
+    <?php endif; ?>
 </div>
-<p>
-    Before you stretch three pathways. The first one leads west to the mountains.
-    The second leads north to the forest. The third and final path leads east to the grasslands.
-</p>
-<a href="mountains" class="btn-primary btn">To the mountains</a>
-<a href="forest" class="btn btn-primary">To the forest</a>
-<a href="#" class="btn btn-primary">To the grasslands</a>
 </body>
 </html>
