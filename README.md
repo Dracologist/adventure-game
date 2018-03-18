@@ -1,32 +1,32 @@
 # adventure-game
-##Objects
-###Player
+## Objects
+### Player
 Stores player data
-###Creature
+### Creature
 A parent class for all animals appearing in the adventure
-####Bear
+#### Bear
 Represents a bear. Is a child of the Creature class
-#####BearCub
+##### BearCub
 Represents a bear cub. Is a child of the Bear class
-####Skunk
+#### Skunk
 Represents a skunk. Is a child of the Creature class
-##Views
+## Views
 The pages of the story
-##Scripts
+## Scripts
 Contains the JavaScript files
-###script
+### Script
 The universal script file that all the pages have access to
-##Styles
+## Styles
 The stylesheets for this project
-###Home Styles
+### Home Styles
 The stylesheet for the home page
-###Signpost Styles
+### Signpost Styles
 The stylesheet for the signpost page
-###Universal Styles
+### Universal Styles
 The stylesheet that affects all of the pages
-##Database
+## Database
 The database files for this project
 ### DB Functions
 Contains the functions for database connections and alterations in this project
-##Index
+## Index
 The routing framework for this project
