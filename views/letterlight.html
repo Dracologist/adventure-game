@@ -10,14 +10,12 @@
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="entryway">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="character-form">Edit Character</a></li>
-            <li class="nav-item"><a class="nav-link" href="quit">Quit</a></li>
+            <li class="nav-item"><a class="nav-link" href="save">Save Character and Quit</a></li>
             <check if="{{isset(@SESSION.player)}}">
-                <li class="nav-item">
-                    <a class="nav-link"></a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link">Name: {{@SESSION.player->getFName()}} {{@SESSION.player->getLName()}}</a>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="delete">Delete Character and Quit</a></li>
             </check>
         </ul>
     </nav>

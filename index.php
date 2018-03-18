@@ -8,7 +8,6 @@ session_save_path("/tmp/cache");
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </head>
@@ -20,7 +19,7 @@ $f3->set('CACHE', true);
 $f3->set('cub', new BearCub);
 $f3->set('mother', new Bear);
 new Session();
-$f3->route('GET|POST /quit', function($f3) {
+$f3->route('GET|POST /save', function($f3) {
     if($f3->exists('SESSION.player')) {
         echo "<h1>Your game id is " . $f3->get('SESSION.playerid') . "</h1>";
         echo "<br>";
@@ -33,6 +32,14 @@ $f3->route('GET|POST /quit', function($f3) {
     echo "<a href='/328/adventure-game' class='btn btn-primary btn-lg'>Home</a>";
     session_destroy();
 });
+
+$f3->route('GET /delete', function ($f3){
+    $template = new Template;
+    deletePlayer($f3->get('SESSION.playerid'));
+    session_destroy();
+    echo $template->render("views/home.html");
+});
+
 
 $f3->route('GET|POST /', function($f3) {
     $view = new View;
