@@ -27,8 +27,8 @@ class BearCub extends Bear
                 "Its mother has come and she is not happy to see you.</p>";
         }
         else{
-            $message .= "<p>But unfortunately, there is no answer.".
-                " Still, it's probably best to get out of here before the mother arrives</p>";
+            $message .= "<p>But unfortunately, there is no answer. ".
+                "Still, it's probably best to get out of here before the mother arrives</p>";
         }
         return $message;
     }
