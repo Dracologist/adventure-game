@@ -12,10 +12,6 @@ Represents a bear cub. Is a child of the Bear class
 Represents a skunk. Is a child of the Creature class
 ##Views
 The pages of the story
-##Scripts
-Contains the JavaScript files
-###script
-The universal script file that all the pages have access to
 ##Styles
 The stylesheets for this project
 ###Home Styles
