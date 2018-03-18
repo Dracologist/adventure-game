@@ -5,31 +5,60 @@
     <title>Your Character</title>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <form action="submit-character" method="post" class="container">
-            <div class="row">
-                <fieldset class="container">
-                    <div class="row">
-                        <legend>Character Name</legend>
-                        <check if="{{isset(@fnerror)}}">
-                            <p class="alert alert-danger">{{@fnerror}}</p>
-                        </check>
-                        <label>First Name: <input type="text" name="fname" id="fname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getFname()}}"</check>></label>
-                    </div>
-                    <div class="row">
-                        <check if="{{isset(@lnerror)}}">
-                        <p class="alert alert-danger">{{@lnerror}}</p>
-                        </check>
-                        <label>Last Name: <input type="text" name="lname" id="lname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getLname()}}"</check>></label>
-                    </div>
-                </fieldset>
+<form id="character" action="submit-character" method="post">
+    <div class="container">
+        <div class="row text-center">
+            <legend>Character Name</legend>
+        </div>
+        <div class="row my-5">
+            <div class="col-md">
+                <div id="fname-message"></div>
+                <check if="{{isset(@fnerror)}}">
+                    <p class="alert alert-danger">{{@fnerror}}</p>
+                </check>
+                <label>First Name: <input type="text" name="fname" id="fname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getFname()}}"</check>></label>
             </div>
-            <div class="row">
-                <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+            <div class="col-md">
+                <div id="lname-message"></div>
+                <check if="{{isset(@lnerror)}}">
+                <p class="alert alert-danger">{{@lnerror}}</p>
+                </check>
+                <label>Last Name: <input type="text" name="lname" id="lname" <check if="{{isset(@SESSION.player)}}">value="{{@SESSION.player->getLname()}}"</check>></label>
             </div>
-        </form>
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary" id="submit-character">Submit</button>
+        </div>
     </div>
-</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submit-character").click(function (e) {
+            var first = $("#fname").val();
+            var last = $("#lname").val();
+            var valid = true;
+            if(first.length < 1){
+                $("#fname-message").html("<p class='alert alert-danger'>First name must be at least one character long</p>");
+                valid = false;
+            }
+            if(last.length < 1){
+                $("#lname-message").html("<p class='alert alert-danger'>Last name must be at least one character long</p>");
+                valid = false;
+            }
+            if(first.match(/\W/) != null){
+                $("#fname-message").html("<p class='alert alert-danger'>First name can not contain special characters</p>");
+                valid = false;
+            }
+            if(last.match(/\W/) != null){
+                $("#lname-message").html("<p class='alert alert-danger'>Last name can not contain special characters</p>");
+                valid = false;
+            }
+            if(!valid){
+                e.preventDefault();
+            }
+        });
+    });
+</script>
 </body>
 </html>

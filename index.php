@@ -98,21 +98,26 @@ $f3->route('GET /@location', function($f3) {
 
 $f3->route('GET|POST /continue', function ($f3){
     $template = new Template;
-    $id = $_POST['player-id'];
-    $load = loadPlayer($id);
-    if(is_array($load)) {
-        $player = new Player($load['fname'], $load['lname']);
-        $f3->set('SESSION.player', $player);
-        $f3->set('SESSION.location', $load['location']);
-        $f3->set('SESSION.playerid', $id);
-        $page = "views/view-character.html";
-    } else {
-        if($load != false) {
-            $f3->set("iderror", "Database Error " . $load->getMessage());
+    $id = $_POST['player_id'];
+    if(validID($id)) {
+        $load = loadPlayer($id);
+        if (is_array($load)) {
+            $player = new Player($load['fname'], $load['lname']);
+            $f3->set('SESSION.player', $player);
+            $f3->set('SESSION.location', $load['location']);
+            $f3->set('SESSION.playerid', $id);
+            $page = "views/view-character.html";
+        } else {
+            if ($load != false) {
+                $f3->set("iderror", "Database Error " . $load->getMessage());
+            } else {
+                $f3->set("iderror", "Invalid ID!");
+            }
+            $page = "views/load-character.html";
         }
-        else{
-            $f3->set("iderror", "Invalid ID!");
-        }
+    }
+    else {
+        $f3->set("iderror", "ID must be at least 1!");
         $page = "views/load-character.html";
     }
     echo $template->render($page);
