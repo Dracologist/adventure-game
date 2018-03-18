@@ -20,9 +20,11 @@
         </ul>
     </nav>
     <p>You reach the end of the desert path, still thinking about the legendary treasure.
-        Ahead you can see the road forks again. One path leads to some mountains and the other to a grassland.</p>
+        Ahead you can see the road forks again. One path leads to some mountains another to a forest,
+        and a third to the grasslands.</p>
     <a href="mountains" class="btn btn-primary">To the Mountains</a>
-    <a href="grassland" class="btn btn-primary">To the Grassland</a>
+    <a href="forest" class="btn btn-primary">To the Forest</a>
+    <a href="grassland" class="btn btn-primary">To the Grasslands</a>
 </div>
 </body>
 </html>

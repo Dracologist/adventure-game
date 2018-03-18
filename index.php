@@ -18,6 +18,7 @@ $f3->set('DEBUG',3);
 $f3->set('CACHE', true);
 $f3->set('cub', new BearCub);
 $f3->set('mother', new Bear);
+$f3->set('skunk', new Skunk);
 new Session();
 $f3->route('GET|POST /save', function($f3) {
     if($f3->exists('SESSION.player')) {
