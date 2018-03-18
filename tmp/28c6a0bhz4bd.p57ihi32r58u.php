@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>grassland path</title>
 </head>
-<body>
+
 <div class="container">
     <nav class="navbar navbar-nav sticky-top">
         <ul class="navbar-nav">
@@ -19,16 +19,32 @@
             <?php endif; ?>
         </ul>
     </nav>
-</div>
-<p>
-    While skipping through the soft grassland,
-    you can see a fork in the road up ahead. A signpost indicates that the left
-    path leads to Weightyword Bridge and the right path leads Letterlight Bridge.
-    There are other signs on the post, but they are too small to read at this distance.
-</p>
+    <p>
+        While skipping through the soft grassland,
+        you come upon a skunk. You carefully tiptoe past it, hoping it doesn't spray you.
 
-<a class="btn btn-primary" href="weightyword">Go to Weightyword Bridge</a>
-<a class="btn btn-primary" href="signpost">Examine Signpost</a>
-<a class="btn btn-primary" href="letterlight">Go to Letterlight Bridge</a>
+    </p>
+    <?php if ($skunk->perception(100)): ?>
+        
+            <p>Unfortunately, the skunk notices your presence and raises its tail.</p>
+            <?= ($skunk->attack())."
+" ?>
+            <p>
+                Still smelling of skunk, you find another fork in the road.
+                One path leads to the desert, another to the mountains, and a third to the forest.
+            </p>
+        
+        <?php else: ?>
+            <p>Luckily, it doesn't seem to notice you and you continue on your way.</p>
+            <p>
+                You find another fork in the road.
+                One path leads to the desert, another to the mountains, and a third to the forest.
+            </p>
+        
+    <?php endif; ?>
+    <a class="btn btn-primary" href="mountains">Go to the Mountains</a>
+    <a class="btn btn-primary" href="desert">Go to the Desert</a>
+    <a class="btn btn-primary" href="forest">Go to the Forest</a>
+</div>
 </body>
 </html>

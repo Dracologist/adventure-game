@@ -20,9 +20,11 @@
         </ul>
     </nav>
     <p>You reach the end of the forest path, still checking over your shoulder to see if the bear is following you.
-        Ahead you can see the road forks again. One path leads to a desert and the other to a grassland.</p>
+        Ahead you can see the road forks again. One path leads to a desert, another to a grassland, and a third
+        to some mountains.</p>
     <a href="desert" class="btn btn-primary">To the Desert</a>
     <a href="grassland" class="btn btn-primary">To the Grassland</a>
+    <a class="btn btn-primary" href="mountains">To the Mountains</a>
 </div>
 </body>
 </html>
