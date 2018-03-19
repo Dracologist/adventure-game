@@ -94,7 +94,7 @@ function loadPlayer($id){
 
 function deletePlayer($id){
     $dbh = connect();
-    $sql = "DELETE * FROM player WHERE id = :id";
+    $sql = "DELETE FROM player WHERE id = :id";
     $statement = $dbh->prepare($sql);
     $statement->bindParam(":id", $id, PDO::PARAM_INT);
     $statement->execute();

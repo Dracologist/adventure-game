@@ -24,7 +24,7 @@
         you come upon a skunk. You carefully tiptoe past it, hoping it doesn't spray you.
 
     </p>
-    <?php if ($skunk->perception(100)): ?>
+    <?php if ($skunk->perception(30)): ?>
         
             <p>Unfortunately, the skunk notices your presence and raises its tail.</p>
             <?= ($skunk->attack())."

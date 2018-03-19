@@ -27,10 +27,12 @@
     
         <p>
             Your foot finds solid ground and you return to the safety of the turf. You descend down the mountain
-            and find another fork in the road. One path leads to a thick forest and the other to lush grasslands.
+            and find another fork in the road. One path leads to a thick forest, another to lush grasslands,
+            and a third to an arid desert.
         </p>
         <a href="forest" class="btn btn-primary">To the forest</a>
         <a href="grassland" class="btn btn-primary">To the grasslands</a>
+        <a href="desert" class="btn btn-primary">To the desert</a>
     
     <?php else: ?>
         <p><b><i>SNAP!</i></b> The board beneath your foot breaks in half and you fall
