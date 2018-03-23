@@ -11,7 +11,7 @@ Represents a bear cub. Is a child of the Bear class
 #### Skunk
 Represents a skunk. Is a child of the Creature class
 ## Views
-The pages of the story
+The pages of the story and character forms. Desert, character-form, and load-character have script elements for validation and button functionality.
 ## Styles
 The stylesheets for this project
 ### Home Styles
